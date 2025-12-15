@@ -9,7 +9,6 @@ export default function HotelDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
-
   const [hotel, setHotel] = useState(null);
   const [rooms, setRooms] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -34,6 +33,7 @@ export default function HotelDetail() {
   useEffect(() => {
     fetchHotelDetail();
   }, [id]);
+
 
   const fetchHotelDetail = async () => {
     try {

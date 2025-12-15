@@ -28,18 +28,13 @@ def getTheCurrentAvailableIds() -> list:
     return location_ids
 def ingestCurrentAvailableHotelsPhoto(locationIDs: list) -> None:
     mongodbConnection = createAMongodbConnection() #mongoDB connection
-    writeToCollection = mongodbConnection["hotel_info"]['currentAvailableHotelsPhoto']
     for id_ in locationIDs: # Create request based on Each location_id and offset limit = 3
-        for offsetNumber in range(0,4):
-            url = f'https://api.content.tripadvisor.com/api/v1/location/{id_}/photos?language=en&limit=5&offset={offsetNumber}&key={os.environ["TRIPADVISORAPI_KEY"]}'
-            documentData = requests.get(url).json()
-            print(id_)
-            print(type(documentData))
-            print(documentData)
-            print("data type inside the list element:" + type(documentData["data"]))
-            print(documentData)
+        for offsetNumber in range(1,4):
+            url = f'https://api.content.tripadvisor.com/api/v1/location/{id_}/photos?language=en&limit=5&offset=1&key={os.environ["TRIPADVISORAPI_KEY"]}'
+            data = {"hotel_id":id_,**(requests.get(url).json())}
             print(f"Getting from locationID {id_} successfully, with the offset number: {offsetNumber}") # Using for logging feature
-        w
+            writeToCollection = mongodbConnection["hotel_info"]['currentAvailableHotelsPhoto']
+            writeToCollection.insert_one(data)
 
 ingestCurrentAvailableHotelsPhoto(getTheCurrentAvailableIds())
 

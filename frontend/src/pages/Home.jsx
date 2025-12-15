@@ -179,7 +179,6 @@ export default function Home() {
     } catch (e) {
       console.error("Error parsing image_urls:", e);
     }
-
     return "https://via.placeholder.com/400x250?text=No+Image";
   };
 

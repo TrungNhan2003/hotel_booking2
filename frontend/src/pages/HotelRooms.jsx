@@ -6,7 +6,6 @@ import ImageUploaderMulti from "../components/ImageUploaderMulti";
 export default function HotelRooms() {
   // id trong URL chính là hotel_id (Mongo ObjectId dạng string)
   const { id } = useParams();
-
   const [hotel, setHotel] = useState(null);
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);

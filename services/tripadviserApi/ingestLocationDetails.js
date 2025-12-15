@@ -2,7 +2,8 @@ const options = {method: 'GET', headers: {accept: 'application/json'}};
 const locationID = ""
 
 const { checkApiConnection } = require('./checkingAPIService.js');
-const {settingUpTheConnection} = require("./ingestToMongoDB/mongodbUtils");  // Import the checkApiConnection function
+const { settingUpTheConnection } = require('ingestToMongoDB/mongodbUtils.js');
+
 console.log(checkApiConnection)
 
 function flattenJSON(json, parentKey = '', result = {}) {// not using yet
